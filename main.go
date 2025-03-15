@@ -39,13 +39,13 @@ func fetchStats() (string, error) {
 	return string(body), nil
 }
 
-func parseStats(data string) ([]float64, error) {
+func parseStats(data string) ([]uint64, error) {
 	parts := strings.Split(data, ",")
 	if len(parts) != 7 {
 		return nil, errors.New("invalid data format")
 	}
 
-	values := make([]float64, len(parts))
+	values := make([]uint64, len(parts))
 	for i, part := range parts {
 		val, err := strconv.ParseFloat(strings.TrimSpace(part), 64)
 		if err != nil {
@@ -56,7 +56,7 @@ func parseStats(data string) ([]float64, error) {
 	return values, nil
 }
 
-func checkThresholds(stats []float64) {
+func checkThresholds(stats []uint64) {
 	loadAvg := stats[0]
 	memTotal := stats[1]
 	memUsed := stats[2]

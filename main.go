@@ -3,7 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
-	"ioutil"
+	"io"
 	"net/http"
 	"strconv"
 	"strings"
@@ -37,7 +37,7 @@ func fetchStats() (string, error) {
 		return "", errors.New("invalid response status: " + resp.Status)
 	}
 
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return "", err
 	}

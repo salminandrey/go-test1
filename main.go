@@ -69,8 +69,8 @@ func checkThresholds(stats []uint64) {
 		fmt.Printf("Load Average is too high: %d\n", int(loadAvg))
 	}
 
-	memUsage := float64(memUsed / memTotal)
-	if memUsage > memoryThreshold {
+	memUsage := float64(memUsed*100 / memTotal)
+	if memUsage > memoryThreshold*100 {
 		fmt.Printf("Memory usage too high: %d%%\n", int(memUsage))
 	}
 

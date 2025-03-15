@@ -20,8 +20,8 @@ const (
 )
 
 
-func dot_to_comma(c_value float64) string{
-    s := fmt.Sprintf("%.2f", c_value)
+func dot2comma(cvalue float64) string{
+    s := fmt.Sprintf("%.2f", cvalue)
     s = strings.Replace(s, ".", ",", -1)
     return s
 }
@@ -77,17 +77,17 @@ func checkThresholds(stats []float64) {
 
 	memUsage := memUsed / memTotal
 	if memUsage > memoryThreshold {
-		fmt.Printf("Memory usage too high: %.2f%%\n", dot_to_comma(memUsage*100))
+		fmt.Printf("Memory usage too high: %s%%\n", dot2comma(memUsage*100))
 	}
 
 	freeDiskMB := (diskTotal - diskUsed) / (1024 * 1024)
 	if diskUsed/diskTotal > diskThreshold {
-		fmt.Printf("Free disk space is too low: %.2f Mb left\n", dot_to_comma(freeDiskMB))
+		fmt.Printf("Free disk space is too low: %s Mb left\n", dot2comma(freeDiskMB))
 	}
 
 	freeNetMbit := ((netTotal - netUsed) * 8) / (1024 * 1024)
 	if netUsed/netTotal > networkThreshold {
-		fmt.Printf("Network bandwidth usage high: %.2f Mbit/s available\n", dot_to_comma(freeNetMbit))
+		fmt.Printf("Network bandwidth usage high: %s Mbit/s available\n", dot2comma(freeNetMbit))
 	}
 }
 

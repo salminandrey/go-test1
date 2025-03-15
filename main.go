@@ -72,7 +72,7 @@ func checkThresholds(stats []float64) {
 	netUsed := stats[6]
 
 	if loadAvg > loadAvgLimit {
-		fmt.Printf("Load Average is too high: %s\n", dot_to_comma(loadAvg))
+		fmt.Printf("Load Average is too high: %s\n", dot2comma(loadAvg))
 	}
 
 	memUsage := memUsed / memTotal

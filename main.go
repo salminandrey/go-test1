@@ -79,7 +79,7 @@ func checkThresholds(stats []float64) {
 		fmt.Printf("Free disk space is too low: %d Mb left\n", int(freeDiskMB))
 	}
 
-	freeNetMbit := (netTotal - netUsed) / (1024 * 1024)
+	freeNetMbit := (netTotal - netUsed) / (1000 * 1000)
 	if netUsed/netTotal > networkThreshold {
 		fmt.Printf("Network bandwidth usage high: %d Mbit/s available\n", int(freeNetMbit))
 	}

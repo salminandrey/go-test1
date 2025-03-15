@@ -20,12 +20,6 @@ const (
 )
 
 
-func dot2comma(cvalue float64) string{
-    s := fmt.Sprintf("%.2f", cvalue)
-    s = strings.Replace(s, ".", ",", -1)
-    return s
-}
-
 func fetchStats() (string, error) {
 	resp, err := http.Get(serverURL)
 	if err != nil {
@@ -72,22 +66,22 @@ func checkThresholds(stats []float64) {
 	netUsed := stats[6]
 
 	if loadAvg > loadAvgLimit {
-		fmt.Printf("Load Average is too high: %s\n", dot2comma(loadAvg))
+		fmt.Printf("Load Average is too high: %f.0", loadAvg)
 	}
 
 	memUsage := memUsed / memTotal
 	if memUsage > memoryThreshold {
-		fmt.Printf("Memory usage too high: %s%%\n", dot2comma(memUsage*100))
+		fmt.Printf("Memory usage too high: %f.0%%\n", memUsage*100)
 	}
 
 	freeDiskMB := (diskTotal - diskUsed) / (1024 * 1024)
 	if diskUsed/diskTotal > diskThreshold {
-		fmt.Printf("Free disk space is too low: %s Mb left\n", dot2comma(freeDiskMB))
+		fmt.Printf("Free disk space is too low: %f.0 Mb left\n", freeDiskMB)
 	}
 
 	freeNetMbit := ((netTotal - netUsed) * 8) / (1024 * 1024)
 	if netUsed/netTotal > networkThreshold {
-		fmt.Printf("Network bandwidth usage high: %s Mbit/s available\n", dot2comma(freeNetMbit))
+		fmt.Printf("Network bandwidth usage high: %f.0 Mbit/s available\n", freeNetMbit)
 	}
 }
 

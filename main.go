@@ -3,7 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
-	"io"
+	"ioutil"
 	"net/http"
 	"strconv"
 	"strings"

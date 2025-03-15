@@ -71,7 +71,7 @@ func checkThresholds(stats []float64) {
 
 	memUsage := memUsed / memTotal
 	if memUsage > memoryThreshold {
-		fmt.Printf("Memory usage too high: %d%%\n", int(memUsage*100))
+		fmt.Printf("Memory usage too high: %d%%\n", int(memUsage))
 	}
 
 	freeDiskMB := (diskTotal - diskUsed) / (1024 * 1024)

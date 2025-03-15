@@ -51,7 +51,7 @@ func parseStats(data string) ([]uint64, error) {
 		if err != nil {
 			return nil, fmt.Errorf("failed to parse value %q: %v", part, err)
 		}
-		values[i] = val
+		values[i] = uint64(val)
 	}
 	return values, nil
 }
@@ -69,18 +69,18 @@ func checkThresholds(stats []uint64) {
 		fmt.Printf("Load Average is too high: %d\n", int(loadAvg))
 	}
 
-	memUsage := memUsed / memTotal
+	memUsage := float64(memUsed / memTotal)
 	if memUsage > memoryThreshold {
 		fmt.Printf("Memory usage too high: %d%%\n", int(memUsage))
 	}
 
 	freeDiskMB := (diskTotal - diskUsed) / (1024 * 1024)
-	if diskUsed/diskTotal > diskThreshold {
+	if float64(diskUsed/diskTotal) > diskThreshold {
 		fmt.Printf("Free disk space is too low: %d Mb left\n", int(freeDiskMB))
 	}
 
 	freeNetMbit := (netTotal - netUsed) / (1000 * 1000)
-	if netUsed/netTotal > networkThreshold {
+	if float64(netUsed/netTotal) > networkThreshold {
 		fmt.Printf("Network bandwidth usage high: %d Mbit/s available\n", int(freeNetMbit))
 	}
 }
